@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ProjectManagementApp.Entities.Tasks>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-body">
+                @foreach (var item in Model)
+                {
+
+                    <div class="panel-body articles-container">
+                        <div class="article border-bottom">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-1 col-md-1 date">
+                                        <div class="large">
+                                            <i class="fa fa-tasks" aria-hidden="true"></i>
+                                        </div>
+                                        <div style="margin-top: 20px;" class="text-muted">
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="col-xs-8 col-md-8">
+                                        <p class="large"><a href="@Url.Action("Details", "Projects", new { id = item.ProjectID })">@Html.DisplayFor(modelItem => item.Name)</a></p>
+                                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                    </div>
+
+                                    <div class="col-xs-1 col-md-1 date">
+                                        <div>@Html.DisplayFor(modelItem => item.HoursEstimation)</div>
+                                    </div>
+
+                                    <div class="col-xs-1 col-md-1 date">
+                                        <div>@Html.ActionLink("Edit", "Edit", new { id = item.ProjectID, @class = "btn btn-md btn-link" })</div>
+                                        <div>@Html.ActionLink("Delete", "Delete", new { id = item.ProjectID, @class = "btn btn-md btn-link" })</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*@foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoursEstimation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TaskID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TaskID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TaskID })
+                    </td>
+                </tr>
+            }
+
+        </table>*@
+</body>
+</html>

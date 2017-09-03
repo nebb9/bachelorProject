@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <link href="~/Styles/styles.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <script src="~/Scripts/Dialog.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span>time</span>tracker</a>
+                <ul class="nav navbar-top-links navbar-right"></ul>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <div class="profile-sidebar">
+            @*<div class="profile-userpic">
+                    <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+                </div>*@
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">
+                    @HttpContext.Current.Session["FirstName"].ToString()
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="divider"></div>
+        @*<form role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>*@
+        <ul class="nav menu">
+          
+            @if (@HttpContext.Current.Session["Role"].ToString() == "SuperUser")
+            {
+                <li>@Html.ActionLink("Profile", "Index", "Home")</li>
+                <li>
+                    @Html.ActionLink("Tasks", "Index", "Tasks")
+                </li>
+                <li>
+                    @Html.ActionLink("Users", "Index", "Users")
+                </li>
+                <li>
+                    @Html.ActionLink("Projects", "Index", "Projects")
+                </li>
+            }
+            else if (@HttpContext.Current.Session["Role"].ToString() == "ProjectManager")
+            {
+                <li>
+                    @Html.ActionLink("Profile", "Index", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("All Employees", "AllEmployees", "Users")
+                </li>
+                <li>
+                    @Html.ActionLink("Projects", "Index", "Projects")
+                </li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Profile", "Index", "Home")</li>
+                <li>
+                    @Html.ActionLink("Projects", "Index", "Projects")
+                </li>
+            }
+            <li>
+                @Html.ActionLink("Logout", "LogOut", "Account")
+            </li>
+                @*<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>*@
+
+                @*<li><a href="elements.html"><em class="fa fa-toggle-off">&nbsp;</em> UI Elements</a></li>
+            <li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>*@
+                @*<li class="parent ">
+                <a data-toggle="collapse" href="#sub-item-1">
+                    <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-1">
+                    <li>
+                        <a class="" href="#">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+                        </a>
+                    </li>
+                </ul>
+            </li>*@
+
+</ul>
+    </div><!--/.sidebar-->
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="panel panel-container" style="min-height:1000px">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="panel panel-container" style="margin-bottom:0px; padding-top: 0px;">
+            <footer>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 footerleft col-sm-offset-2">
+                        <h6 class="heading7">Time Tracker</h6>
+                        <p>Timetracker is an bachelor graduation project. It is a web application that is built with ASP.net MVC framework, using entity framework, razor, linq</p>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 paddingtop-bottom">
+                        <h6 class="heading7">Contact</h6>
+                        <div class="post">
+                            <p><i class="fa fa-map-pin"></i> Banović Strahinje 12 / 19 21000 Novi Sad, Serbia</p>
+                            <p><i class="fa fa-phone"></i> Phone (Serbia) : +381644775000</p>
+                            <p><i class="fa fa-envelope"></i> E-mail : nebojsaStankovic@live.com</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="panel panel-container no-padding" style="padding-top: 0px;">
+            <div class="copyright">
+                <div class="col-md-6">
+                    <p> &copy; 2017 - <a target="_blank" href="https://www.linkedin.com/in/nebojša-stanković-a3b408141/">Nebojša Stanković</a> - all rights reserved</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="bottom_ul">
+                        <li><a target="_blank" href="https://www.linkedin.com/in/neboj%C5%A1a-stankovi%C4%87-a3b408141/">Linkedin</a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/NebbStankovic">Facebook</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+       
+    </div>
+
+
+</body>
+</html>

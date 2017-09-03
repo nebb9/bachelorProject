@@ -1,0 +1,122 @@
+﻿@model ProjectManagementApp.Entities.Project
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p>Information about @Html.DisplayFor(model => model.Name)</p>
+            </div>
+            <div class="panel-body">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-body">
+            <div class="panel-heading">
+                <p>@Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID })</p>
+            </div>
+            <div class="panel-body articles-container">
+                <div class="article border-bottom">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-8 col-md-8">
+                                <h4>@Html.DisplayFor(model => model.Name)</h4>
+                                <p>@Html.DisplayFor(model => model.Description)</p>
+                            </div>
+                            <div class="col-xs-1 col-md-1 date">
+                                <p>@Html.DisplayFor(model => model.StartDate)</p>
+                            </div>
+
+                            <div class="col-xs-1 col-md-1 date">
+                                <p>@Html.DisplayFor(model => model.EndDate)</p>
+                            </div>
+
+                            <div class="col-xs-2 col-md-2 date">
+                                @if (Session["Role"].ToString() == "ProjectManager")
+                                {
+                                    @Html.ActionLink("Assign worker", "Create", "Assignments", new { projectID = Model.ProjectID }, null)
+                                }
+                                else if (Session["Role"].ToString() == "Emoloyee")
+                                {
+                                    @Html.ActionLink("Create New Task", "Create", "Tasks", new { projectID = Model.ProjectID }, null)
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div><!--End .article-->
+
+                <div class="article ">
+                    <div class="col-xs-12">
+                        @Html.Action("GetTasksForProject", "Tasks", new { projectID = Model.ProjectID })
+                    </div>
+
+                    <div class="clear">
+                    </div>
+                </div><!--End .article-->
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div>
+        <h4>Project</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Duration)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Duration)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsDone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HourlyRate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HourlyRate)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

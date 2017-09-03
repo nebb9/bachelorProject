@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ProjectManagementApp.Entities.Skills>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+   
+    <div class="panel-body">
+        <p>
+            @*<button class="btn-bootstrap-dialog">Add Skill</button>*@
+           
+            <a href="#" onclick="AddNewSkill()">Click me</a>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <div class="col-md-12 no-padding">
+            <div class="row progress-labels">
+                @foreach (var item in Model)
+                {
+                    <div class="panel-body">
+                        <div class="row progress-labels">
+                            <div class="col-sm-6"> @Html.DisplayFor(modelItem => item.Name) </div>
+                            @*<div class="col-sm-6" style="text-align: right;"></div>*@
+                        </div>
+
+                        <div class="progress">
+                            @if (item.Level == 1)
+                            {
+                                <div data-percentage="0%" style="width: 10%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 2)
+                            {
+                                <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 3)
+                            {
+                                <div data-percentage="0%" style="width: 30%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 4)
+                            {
+                                <div data-percentage="0%" style="width: 40%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 5)
+                            {
+                                <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 6)
+                            {
+                                <div data-percentage="0%" style="width: 60%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 7)
+                            {
+                                <div data-percentage="0%" style="width: 70%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 8)
+                            {
+                                <div data-percentage="0%" style="width: 80%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else if (item.Level == 9)
+                            {
+                                <div data-percentage="0%" style="width: 90%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                            else
+                            {
+                                <div data-percentage="0%" style="width: 100%;" class="progress-bar progress-bar-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            }
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div>
+       
+    </div>
+
+    <div class="modal fade" id="bootstrapDialog" tabindex="-1" role="dialog" aria-labelledby="myModal-label" aria-hidden="true" data-url='@Url.Action("Create", "Skills")'></div>
+    
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body" id="myModalBodyDiv">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</html>
+
+<script>
+    var AddNewSkill = function () {
+        var url = "/Skills/Create/"
+        $('#myModalBodyDiv').load(url, function () {
+            $('#myModal').modal("show");
+        })
+    }
+</script>

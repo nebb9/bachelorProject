@@ -1,0 +1,101 @@
+﻿@using ProjectManagementApp.Models.Home
+@model HomeViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--Custom Font-->
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<div class="row">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @id = "user-info-form" }))
+    {
+        @Html.AntiForgeryToken();
+        <div class="col-xs-6 col-md-3 col-lg-3">
+            <div class="panel panel-teal panel-widget border-right">
+                <div class="row no-padding">
+                    <div class="col-lg-12"><img src="~/Content/img/profile.jpg" height="250" width="250" /> </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3 col-lg-8">
+            <div class="border-right">
+                <div class="row no-padding">
+                    <div class="form-group">
+                        <div class="col-lg-8" style="float: none">
+                            <h1 class="page-header">@Html.DisplayFor(u => u.FirstName, Model.FirstName)  @Html.DisplayFor(u => u.LastName, Model.LastName)</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3 col-lg-8">
+            <div class="border-right">
+                <div class="row no-padding">
+                    <div class="form-group">
+                        <div class="col-lg-8" style="float: none">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            @Html.DisplayFor(u => u.Country, Model.Country)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3 col-lg-8 ">
+            <div class=" border-right">
+                <div class="row no-padding">
+                    <div class="form-group">
+                        <div class="col-lg-8" style="float: none">
+                            <i class="fa fa-industry" aria-hidden="true"></i>
+                            @Html.DisplayFor(u => u.Industry, Model.Industry)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3 col-lg-8">
+            <div class=" border-right">
+                <div class="row no-padding">
+                    <div class="form-group">
+                        <div class="col-lg-8" style="float: none">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                            @Html.DisplayFor(u => u.Education, Model.Education)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p>Summary</p>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(u => u.Summary, Model.Summary)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p>Skills</p>
+            </div>
+            <div>
+                @{Html.RenderAction("Index", "Skills");}
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,61 @@
+﻿@using ProjectManagementApp.Models.Users
+@model IEnumerable<UserDetailsViewModel>
+@{
+    ViewBag.Title = "ManageUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts
+{
+    <script src="~/ViewScripts/AddUser.cshtml.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p>Manage users</p>
+            </div>
+            <div class="panel-body">
+                <input type="button" data-target="#addNewUser" data-toggle="modal" id="preview-add-user" value="Add user" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-body">
+            <div class="panel-heading">
+                <p></p>
+            </div>
+            <table id="all-jobs-table" class="table table-striped table-hover table-condensed table-responsive">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Country)</th>
+                        <th>@Html.DisplayNameFor(model => model.Industry)</th>
+                        <th>@Html.DisplayNameFor(model => model.Education)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (UserDetailsViewModel users in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => users.FirstName)</td>
+                            <td>@Html.DisplayFor(modelItem => users.LastName)</td>
+                            <td>@Html.DisplayFor(modelItem => users.Country)</td>
+                            <td>@Html.DisplayFor(modelItem => users.Industry)</td>
+                            <td>@Html.DisplayFor(modelItem => users.Education)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addNewUser">
+    @{Html.RenderAction("AddUser"); }
+</div>

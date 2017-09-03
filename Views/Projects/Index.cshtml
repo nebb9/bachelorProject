@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjectManagementApp.Entities.Project>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["Role"].ToString() == "ProjectManager")
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p>Project Explorer</p>
+                </div>
+                <div class="panel-body">
+                    @Html.ActionLink("Add Project ", "Create", "Projects", null, new { @class = "modal-link" })
+
+                </div>
+            </div>
+        </div>
+    </div> 
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-body">
+            @foreach (var item in Model)
+            {
+                <div class="panel-body articles-container">
+                    <div class="article border-bottom">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-2 col-md-2 date">
+                                    <div class="large">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                    <div style="margin-top: 20px;" class="col-xs-6 text-muted">@Html.DisplayFor(modelItem => item.StartDate)</div>
+                                    <div style="margin-top: 20px;" class="col-xs-6 text-muted">@Html.DisplayFor(modelItem => item.EndDate)</div>
+                                </div>
+                                <div class="col-xs-8 col-md-8">
+                                    <p class="large"><a href="@Url.Action("Details", "Projects", new { id = item.ProjectID })">@Html.DisplayFor(modelItem => item.Name)</a></p>
+                                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                </div>
+
+                                <div class="col-xs-2 col-md-2 date">
+                                    <div>@Html.ActionLink("Edit", "Edit", new { id = item.ProjectID, @class = "btn btn-md btn-link" })</div>
+                                    <div>@Html.ActionLink("Delete", "Delete", new { id = item.ProjectID, @class = "btn btn-md btn-link" })</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div><!--End .article-->
+                </div>
+            }
+        </div>
+    </div>
+</div>

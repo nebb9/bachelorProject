@@ -1,0 +1,68 @@
+﻿@using ProjectManagementApp.Entities
+@model  User
+
+
+<div class="modal-lg modal-window" role="dialog" >
+    <div class="modal-dialog">
+        <div class="col-md-12">
+            <div class="modal-content">
+                <div class="panel-body">
+                    <div class="modal-header">
+
+                        <div class="panel-heading">
+                            <p>Add User</p>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-body">
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "add-user-form" }))
+                        {
+                        @Html.AntiForgeryToken();
+                        <div class="form-group">
+                            @Html.LabelFor(u => u.FirstName)
+                            @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @id = "user-firstName" })
+                            @Html.ValidationMessageFor(u => u.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(u => u.LastName)
+                            @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @id = "user-lastName" })
+                            @Html.ValidationMessageFor(u => u.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(u => u.Country)
+                            @Html.TextBoxFor(u => u.Country, new { @class = "form-control", @id = "user-country" })
+                            @Html.ValidationMessageFor(u => u.Country, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(u => u.Industry)
+                            @Html.TextBoxFor(u => u.Industry, new { @class = "form-control", @id = "user-industry" })
+                            @Html.ValidationMessageFor(u => u.Industry, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(u => u.Username)
+                            @Html.TextBoxFor(u => u.Username, new { @class = "form-control", @id = "user-username" })
+                            @Html.ValidationMessageFor(u => u.Username, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(u => u.Password)
+                            @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @id = "user-username" })
+                            @Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(u => u.Password)
+                            @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @id = "user-username" })
+                            @Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })
+                        </div>
+                        }
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
